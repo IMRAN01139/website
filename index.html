@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Voice for the Blind – AI Website</title>
+<style>
+:root {
+  --deep-orange: #ff5722;
+  --green: #4caf50;
+  --blue: #03a9f4;
+  --pink: #e91e63;
+  --dark: #263238;
+  --light: #f5f5f5;
+  --card-shadow: rgba(0,0,0,0.15);
+  --transition-speed: 0.3s;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', sans-serif; background: var(--light); color: var(--dark); line-height: 1.6; }
+header { background: linear-gradient(135deg, var(--deep-orange), var(--blue)); color: white; text-align: center; padding: 3rem 1rem; box-shadow: 0 4px 20px rgba(0,0,0,0.2);}
+header h1 { font-size: 3rem; margin-bottom: 0.5rem; text-shadow: 2px 2px rgba(0,0,0,0.2);}
+header p { font-size: 1.3rem; font-weight: 500;}
+nav { display: flex; justify-content: center; flex-wrap: wrap; background: var(--dark); box-shadow: 0 4px 10px rgba(0,0,0,0.2); position: sticky; top: 0; z-index: 100;}
+nav a { color: white; text-decoration: none; padding: 1rem 1.8rem; font-weight: 600; transition: all var(--transition-speed) ease-in-out;}
+nav a:hover { background: var(--green); border-radius: 8px; transform: scale(1.05);}
+section { padding: 3rem 10%; animation: fadeIn 1s ease-in;}
+@keyframes fadeIn { from {opacity: 0; transform: translateY(20px);} to {opacity: 1; transform: translateY(0);}}
+h2 { color: var(--pink); border-left: 6px solid var(--pink); padding-left: 15px; display: flex; justify-content: space-between; align-items: center; font-size: 2rem; margin-bottom: 1.5rem;}
+.card { background: linear-gradient(145deg, #ffffff, #e0f7fa); padding: 1.8rem; border-radius: 15px; margin-bottom: 2rem; box-shadow: 0 8px 20px var(--card-shadow); transition: all var(--transition-speed) ease-in-out;}
+.card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 12px 25px rgba(0,0,0,0.25);}
+.btn { display: inline-block; padding: 0.7rem 1.5rem; margin-top: 1rem; background: linear-gradient(135deg, var(--blue), var(--deep-orange)); color: white; border: none; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 1rem; transition: all var(--transition-speed) ease-in-out;}
+.btn:hover { background: linear-gradient(135deg, var(--pink), var(--green)); transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2);}
+.voice-controls { text-align: center; margin: 2rem;}
+.voice-controls button { font-size: 1.2rem; padding: 0.8rem 1.5rem; border: none; border-radius: 12px; background: linear-gradient(135deg, var(--green), var(--blue)); color: white; cursor: pointer; font-weight: 600; transition: all var(--transition-speed) ease-in-out;}
+.voice-controls button:hover { background: linear-gradient(135deg, var(--deep-orange), var(--pink)); transform: scale(1.05); box-shadow: 0 5px 15px rgba(0,0,0,0.2);}
+button[aria-label] { font-size: 1rem; padding: 0.3rem 0.6rem; border: none; border-radius: 6px; background: var(--green); color: white; cursor: pointer; font-weight: 600; transition: all var(--transition-speed) ease-in-out;}
+button[aria-label]:hover { background: var(--deep-orange); transform: scale(1.05);}
+#aiZone { background: linear-gradient(145deg, #ffffff, #fff9c4); padding: 2rem; border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); margin: 3rem auto; max-width: 900px; transition: all 0.4s ease-in-out;}
+#aiAnswer { margin-top: 1rem; font-size: 1.15rem; font-weight: 500; color: var(--dark);}
+img { width: 100%; border-radius: 15px; margin-top: 10px; transition: transform var(--transition-speed) ease-in-out;}
+img:hover { transform: scale(1.03); box-shadow: 0 10px 20px rgba(0,0,0,0.2);}
+footer { text-align: center; padding: 2rem; background: var(--dark); color: white; font-weight: 500; font-size: 0.95rem; margin-top: 2rem; letter-spacing: 0.5px;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Voice for the Blind</h1>
+  <p>Motivational & Life Skills Audiobooks for the Visually Impaired</p>
+</header>
+
+<nav>
+  <a href="#objective">Objective</a>
+  <a href="#why">Why This Project</a>
+  <a href="#topics">Audio Topics</a>
+  <a href="#videos">Motivational Videos</a>
+  <a href="#process">Our Process</a>
+  <a href="#tools">Tools Used</a>
+  <a href="#outcome">Expected Outcome</a>
+  <a href="#safety">Safety & Images</a>
+  <a href="#aiZone">AI Assistant</a>
+</nav>
+
+<div class="voice-controls">
+  <button onclick="startSectionListening()">🎙️ Speak Section Command</button>
+  <p id="voiceStatus"></p>
+</div>
+
+<section id="objective">
+  <h2>🎯 Project Objective
+    <button onclick="speakSection('objective')" aria-label="Read this section">🔊 Listen</button>
+  </h2>
+  <div class="card"><p>This project aims to create motivational and practical audio content for the visually impaired in Hindi, Marathi, and English.</p></div>
+</section>
+
+<section id="why">
+  <h2>💡 Why We Chose This Project
+    <button onclick="speakSection('why')" aria-label="Read this section">🔊 Listen</button>
+  </h2>
+  <div class="card"><p>Non-academic guidance and entertainment in audio format is lacking. Audio is the most accessible medium.</p></div>
+</section>
+
+<section id="topics">
+  <h2>📂 Audio Topics
+    <button onclick="speakSection('topics')" aria-label="Read this section">🔊 Listen</button>
+  </h2>
+  <div class="card">
+    <h3>"CAREER PATH"</h3>
+    <audio controls preload="auto">
+      <source src="audio/careerpath.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+  <div class="card">
+    <h3>"SCHOLARSHIP & FREE COURSES"</h3>
+    <audio controls preload="auto">
+      <source src="audio/SCHOLARSHIP_&_FREE_COURSES.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+  <div class="card">
+    <h3>"COMPETITIVE EXAMS AND SCRIBE"</h3>
+    <audio controls preload="auto">
+      <source src="audio/COMPETITIVE_EXAMS_AND_SCRIBE.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <div class="card">
+    <h3>"Story of Srikanth Bolla (Blind Entrepreneur)"</h3>
+    <audio controls preload="auto">
+      <source src="audio/Story_of_Srikanth_Bolla_(Blind_Entrepreneur).mp3" type="audio/mpeg">
+    </audio>
+  </div>
+  <div class="card">
+    <h3>"HOW TO FACE INTERVIEW WITH CONFIDENCE"</h3>
+    <audio controls preload="auto">
+      <source src="audio/HOW_TO_FACE_INTERVIEW_WITH_CONFIDENCE.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+  <div class="card">
+    <h3>"RESUME BUILDING PATHS"</h3>
+    <audio controls preload="auto">
+      <source src="audio/RESUME_BUILDING_PATHS.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+  <div class="card">
+    <h3>"STORY OF KANCHANMALA PANDE (BLIND SWIMMER)"</h3>
+    <audio controls preload="auto">
+      <source src="audio/STORY_OF_KANCHANMALA_PANDE_(BLIND SWIMMER).mp3" type="audio/mpeg">
+    </audio>
+  </div>
+  <div class="card">
+    <h3>"“STORY OF AVANI CHATURVEDI (FIRST IAF PILOT)”"</h3>
+    <audio controls preload="auto">
+      <source src="audio/STORY_OF_AVANI_CHATURVEDI_(FIRST_IAF_PILOT).mp3" type="audio/mpeg">
+    </audio>
+  </div>
+  <div class="card">
+    <h3>"APPS TO HELP IN DAILY LIFE"</h3>
+    <audio controls preload="auto">
+      <source src="audio/APPS_TO_HELP_IN_DAILY_LIFE.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+    <div class="card">
+    <h3>"WORK FROM HOME JOBS"</h3>
+    <audio controls preload="auto">
+      <source src="audio/WORK_FROM_HOME_JOBS.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+  
+  <div class="card">
+    <h3>"सड़क पार करते समय Safety (1)"</h3>
+    <audio controls preload="auto">
+      <source src="audio/road_safety.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+  <div class="card">
+    <h3>"Audio Books और Screen Readers"</h3>
+    <audio controls preload="auto">
+      <source src="audio/Audio_Books_और_Screen_Readers.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+  <div class="card">
+    <h3>"Exams की तैयारी बिना Stress"</h3>
+    <audio controls preload="auto">
+      <source src="audio/exam_preparation_without_stress.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+  <div class="card">
+    <h3>"Google Assistant का इस्तेमाल"</h3>
+    <audio controls preload="auto">
+      <source src="audio/Google_Assistant_का_इस्तेमाल.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+  
+  <div class="card">
+    <h3>"Study Desk Organize करना"</h3>
+    <audio controls preload="auto">
+      <source src="audio/Study_Desk_Organize_करना.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+    <div class="card">
+    <h3>"UPI Payments बिना देखे इस्तेमाल करना"</h3>
+    <audio controls preload="auto">
+      <source src="audio/UPI_Payments_बिना_देखे_इस्तेमाल_करना.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+    <div class="card">
+    <h3>"करेंसी नोट और सिक्के पहचानना"</h3>
+    <audio controls preload="auto">
+      <source src="audio/checking_notes_and_coins.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+   
+  
+  
+</section>
+<section id="process">
+  <h2>⚙️ Our Process
+    <button onclick="speakSection('process')" aria-label="Read this section">🔊 Listen</button>
+  </h2>
+  <div class="card">
+    <p>1. Research motivational topics for blind persons.<br>
+       2. Record high-quality audio content in multiple languages.<br>
+       3. Curate and organize audio files into easy-to-access categories.<br>
+       4. Integrate videos and resources for holistic learning.<br>
+       5. Test accessibility and usability for visually impaired users.</p>
+  </div>
+</section>
+
+<section id="tools">
+  <h2>🛠️ Tools Used
+    <button onclick="speakSection('tools')" aria-label="Read this section">🔊 Listen</button>
+  </h2>
+  <div class="card">
+    <p>- Audio Recording: Audacity, Adobe Audition<br>
+       - Speech Synthesis: Web Speech API<br>
+       - Web Development: HTML, CSS, JavaScript<br>
+       - Hosting: GitHub Pages / Netlify<br>
+       - Accessibility Testing: NVDA, JAWS Screen Readers<br>
+       - Video Embedding: YouTube Links</p>
+  </div>
+</section>
+
+<section id="outcome">
+  <h2>🎯 Expected Outcome
+    <button onclick="speakSection('outcome')" aria-label="Read this section">🔊 Listen</button>
+  </h2>
+  <div class="card">
+    <p>- Visually impaired users can easily access motivational content.<br>
+       - Users gain knowledge, confidence, and skills.<br>
+       - Improved learning and entertainment experience.<br>
+       - Accessible, multilingual audio resources centralized in one platform.</p>
+  </div>
+</section>
+
+<section id="safety">
+  <h2>🛡️ Safety & Images
+    <button onclick="speakSection('safety')" aria-label="Read this section">🔊 Listen</button>
+  </h2>
+  <div class="card">
+    <p>- Safety tips while crossing streets, using public transport, and online platforms.<br>
+       - Images are accompanied with descriptive alt-text for screen readers.<br>
+       - Highlighting safe apps and tools for daily assistance.</p>
+  </div>
+</section>
+<!-- Motivational Videos for Blind -->
+<!-- Motivational Videos for Blind -->
+<section id="videos">
+  <h2>🎥 Motivational Videos for Blind Persons</h2>
+
+  <div class="card">
+    <h3>1. THE VISIONS OF A BLIND MAN</h3>
+    <a class="btn" href="https://www.youtube.com/watch?v=4mYp-MYNNrA" target="_blank">Watch on YouTube</a>
+  </div>
+
+  <div class="card">
+    <h3>2. Hein Wagner – A blind man with vision</h3>
+    <a class="btn" href="https://www.youtube.com/watch?v=wHuKNA5FfEI" target="_blank">Watch on YouTube</a>
+  </div>
+
+  <div class="card">
+    <h3>3. 3 Inspiring Stories of Blind People with Mind-Blowing Skills</h3>
+    <a class="btn" href="https://www.youtube.com/watch?v=NscA5vkVf6A" target="_blank">Watch on YouTube</a>
+  </div>
+
+  <div class="card">
+    <h3>4. Living Boldly With Blindness – David Toro</h3>
+    <a class="btn" href="https://www.youtube.com/watch?v=9ccIlIId_R0" target="_blank">Watch on YouTube</a>
+  </div>
+
+  <div class="card">
+    <h3>5. Encouragement for those losing sight, are blind, legally blind …</h3>
+    <a class="btn" href="https://www.youtube.com/watch?v=imGC0Tg8Vro" target="_blank">Watch on YouTube</a>
+  </div>
+
+</section>
+
+
+<!-- The rest of your sections (Process, Tools, Outcome, Safety, AI) remain the same -->
+
+<section id="aiZone">
+  <h2>🤖 AI Assistant</h2>
+  <button id="talkBtn">🎧 Start Talking</button>
+  <p id="status"></p>
+  <div id="aiAnswer">AI answer will appear here...</div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Voice for the blind | B.Tech AI & DS Students</p>
+</footer>
+
+<script>
+function speakSection(id){
+  const text=document.getElementById(id).innerText;
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='en-IN';
+  speechSynthesis.speak(u);
+}
+
+function speakText(text){
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang='en-IN';
+  speechSynthesis.speak(u);
+}
+
+function startSectionListening(){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){alert("Speech recognition not supported.");return;}
+  const rec=new SR();
+  rec.lang="en-US";
+  rec.onstart=()=>document.getElementById("voiceStatus").innerText="Listening...";
+  rec.onresult=e=>{
+    const t=e.results[0][0].transcript.toLowerCase();
+    const ids=["objective","why","topics","videos","process","tools","outcome","safety","ai"];
+    for(const id of ids){
+      if(t.includes(id)){
+        document.getElementById(id==="ai"?"aiZone":id).scrollIntoView({behavior:"smooth"});
+      }
+    }
+  };
+  rec.start();
+}
+</script>
+</body>
+</html>
